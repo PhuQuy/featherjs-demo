@@ -14,6 +14,7 @@ import { UserComponent } from '../../pages/user/user.component';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { UserEditModule } from 'src/app/components/user-edit/user-edit.module';
 import { JobEditModule } from 'src/app/components/job-edit/job-edit.module';
+import { ConfirmationModalModule } from 'src/app/components/confirmation-modal/confirmation-modal.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { JobEditModule } from 'src/app/components/job-edit/job-edit.module';
     HttpClientModule,
     NgbModule,
     UserEditModule,
-    JobEditModule
+    JobEditModule,
+    ConfirmationModalModule
   ],
   declarations: [
     DashboardComponent,

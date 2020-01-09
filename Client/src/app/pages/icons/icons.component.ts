@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditComponent } from 'src/app/components/user-edit/user-edit.component';
 import { JobEditComponent } from 'src/app/components/job-edit/job-edit.component';
+import { ConfirmationModalComponent } from 'src/app/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: "app-icons",
@@ -41,6 +42,13 @@ export class IconsComponent implements OnInit {
   }
 
   deleteJob(id) {
-    this.jobs.splice(id, 1);
+    const modalRef = this.modalService.open(ConfirmationModalComponent, { centered: true });
+    modalRef.componentInstance.message = 'Do you want to delete this job?';
+    modalRef.result.then(action => {
+      if (action === 'Y') {
+        this.jobs.splice(id, 1);
+      }
+    })
+
   }
 }

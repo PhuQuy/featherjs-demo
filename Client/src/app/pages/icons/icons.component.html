@@ -38,7 +38,7 @@
                   <td>{{job?.description}}</td>
                   <td>
                     <i class="fa fa-edit mx-1 text-green cursor-pointer" (click)="openEditJob(job)"></i>
-                    <i class="fa fa-trash mx-2 text-red cursor-pointer"></i>
+                    <i class="fa fa-trash mx-2 text-red cursor-pointer" (click)="deleteJob(i)"></i>
                   </td>
                 </tr>
               </tbody>
