@@ -1,0 +1,31 @@
+<div class="bg-dark">
+  <div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="jobForm">
+      <div class="row">
+        <div class="col-12 form-group">
+          <input type="text" class="form-control" placeholder="Job title" formControlName="job">
+          <div *ngIf="formCtrl.job.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.job.errors.required && (formCtrl.job.dirty || formCtrl.job.touched)">Job title is required field</div>
+          </div>
+        </div>
+    
+        <div class="col-12 form-group">
+          <input type="text" class="form-control" placeholder="Description" formControlName="description">
+          <div *ngIf="formCtrl.description.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.description.errors.required && (formCtrl.description.dirty || formCtrl.description.touched)">Description is required field</div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+
+</div>

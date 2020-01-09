@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card card-chart card-suite">
+        <div class="card-header divider">
+          <div class="row">
+            <div class="col-4 my-auto">
+              <div class="d-flex flex-row align-items-center">
+                <!-- <div class=" d-flex align-items-center">
+                  <app-mode-img src="/assets/img/dark-alarm@2x.png" whiteSrc="/assets/img/alarm@2x.png" width="25px">
+                  </app-mode-img>
+                </div> -->
+                <div class="p-2">
+                  <h1 class="mb-0 text-uppercase font-weight-bold">Job</h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 my-auto text-right">
+              <button class="btn btn-primary text-center font-weight-bold" (click)="openNewUser()"><i class="fa fa-plus pr-2"></i>Add new</button>
+            </div>
+          </div>
+        </div>
+        <div class=" card-body px-0">
+          <div class="table-responsive table-full-width" style="overflow: auto;padding-bottom: 1px;">
+            <table class="table tablesorter" id="">
+              <thead class="text-primary">
+                <tr class="header-text bg-grey-dark">
+                  <th class="text-center">#</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr [ngClass]="{'even': i%2 != 0}" *ngFor="let user of users; let i = index">
+                  <td class="text-center">{{i + 1}}</td>
+                  <td>{{user?.title}}</td>
+                  <td>{{user?.description}}</td>
+                  <td>
+                    <i class="fa fa-edit mx-1 text-green"></i>
+                    <i class="fa fa-trash mx-2 text-red"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

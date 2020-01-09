@@ -1,0 +1,15 @@
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li class="nav-item">
+      <a routerLink="/dashboard">
+        <img src="assets/img/logo.png" alt="" width="30">
+      </a>
+    </li>
+    <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
+      <a [routerLink]="[menuItem.path]">
+        <!-- <div class="icon  {{ menuItem.icon }}"></div> -->
+        <i class="icon {{ menuItem.icon }} "></i>
+      </a>
+    </li>
+  </ul>
+</div>

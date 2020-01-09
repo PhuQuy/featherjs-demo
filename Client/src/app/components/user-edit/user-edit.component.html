@@ -1,0 +1,52 @@
+<div class="bg-dark">
+  <div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="userForm">
+      <div class="row">
+        <div class="col-12 form-group">
+          <input type="text" class="form-control" placeholder="Your name" formControlName="name">
+          <div *ngIf="formCtrl.name.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.name.errors.required && (formCtrl.name.dirty || formCtrl.name.touched)">Name is required field</div>
+          </div>
+        </div>
+        <div class="col-12 form-group">
+          <input type="text" class="form-control" placeholder="Date of birth" formControlName="dob">
+          <div *ngIf="formCtrl.dob.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.dob.errors.required && (formCtrl.dob.dirty || formCtrl.dob.touched)">Date of birth is required field</div>
+          </div>
+        </div>
+        <div class="col-12 form-group">
+          <input type="email" class="form-control" placeholder="Email" formControlName="email">
+          <div *ngIf="formCtrl.email.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.email.errors.required && (formCtrl.email.dirty || formCtrl.email.touched)">Email is required field</div>
+            <div *ngIf="formCtrl.email.errors.email">Email is invalid field</div>
+          </div>
+        </div>
+        <div class="col-6 form-group">
+          <!-- <input type="text" class="form-control" placeholder="Gender"> -->
+          <select class="custom-select form-control" formControlName="gender">
+            <option selected>Gender</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+          </select>
+        </div>
+        <div class="col-6 form-group">
+          <input type="number" class="form-control" placeholder="Hourly rate ($)" formControlName="hourlyrate">
+          <div *ngIf="formCtrl.hourlyrate.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.hourlyrate.errors.required && (formCtrl.hourlyrate.dirty || formCtrl.hourlyrate.touched)">Hourly Rate is required field</div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+
+</div>
