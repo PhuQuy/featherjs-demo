@@ -42,8 +42,8 @@
                   <td>{{user?.name}}</td>
                   <td>{{user?.dob}}</td>
                   <td>{{user?.email}}</td>
-                  <td>{{user?.gender}}</td>
-                  <td>{{user?.hourly}}</td>
+                  <td>{{user?.gender == 1 ? 'Male' : 'Female'}}</td>
+                  <td>${{user?.rate}}</td>
                   <td>
                     <i class="fa fa-edit mx-1 text-green cursor-pointer" (click)="openEditUser(user)"></i>
                     <i class="fa fa-trash mx-2 text-red cursor-pointer" (click)="deleteUser(i)"></i>

@@ -11,34 +11,43 @@
         <div class="col-12 form-group">
           <input type="text" class="form-control" placeholder="Your name" formControlName="name">
           <div *ngIf="formCtrl.name.errors" class="invalid-feedback d-block text-left">
-            <div *ngIf="formCtrl.name.errors.required && (formCtrl.name.dirty || formCtrl.name.touched)">Name is required field</div>
+            <div *ngIf="formCtrl.name.errors.required && (formCtrl.name.dirty || formCtrl.name.touched)">Name is
+              required field</div>
           </div>
         </div>
         <div class="col-12 form-group">
-          <input type="text" class="form-control" placeholder="Date of birth" formControlName="dob">
+          <!-- <input type="text" class="form-control" placeholder="Date of birth" formControlName="dob"> -->
+          <input class="form-control position-absolute hidden-input" ngbDatepicker #inputDate
+            #datePicker="ngbDatepicker" [(ngModel)]="date" (ngModelChange)="updateInput($event)" [ngModelOptions]="{standalone: true}">
+          <input class="form-control" type="text" placeholder="Date of birth" [value]="dateForFakeInput"
+            (click)="toggleDatePicker()">
+
           <div *ngIf="formCtrl.dob.errors" class="invalid-feedback d-block text-left">
-            <div *ngIf="formCtrl.dob.errors.required && (formCtrl.dob.dirty || formCtrl.dob.touched)">Date of birth is required field</div>
+            <div *ngIf="formCtrl.dob.errors.required && (formCtrl.dob.dirty || formCtrl.dob.touched)">Date of birth is
+              required field</div>
           </div>
         </div>
         <div class="col-12 form-group">
           <input type="email" class="form-control" placeholder="Email" formControlName="email">
           <div *ngIf="formCtrl.email.errors" class="invalid-feedback d-block text-left">
-            <div *ngIf="formCtrl.email.errors.required && (formCtrl.email.dirty || formCtrl.email.touched)">Email is required field</div>
+            <div *ngIf="formCtrl.email.errors.required && (formCtrl.email.dirty || formCtrl.email.touched)">Email is
+              required field</div>
             <div *ngIf="formCtrl.email.errors.email">Email is invalid field</div>
           </div>
         </div>
         <div class="col-6 form-group">
           <!-- <input type="text" class="form-control" placeholder="Gender"> -->
-          <select class="custom-select form-control" formControlName="gender">
+          <select class="custom-select bg-dark form-control" formControlName="gender">
             <option selected>Gender</option>
             <option value="1">Male</option>
             <option value="2">Female</option>
           </select>
         </div>
         <div class="col-6 form-group">
-          <input type="number" class="form-control" placeholder="Hourly rate ($)" formControlName="hourlyrate">
-          <div *ngIf="formCtrl.hourlyrate.errors" class="invalid-feedback d-block text-left">
-            <div *ngIf="formCtrl.hourlyrate.errors.required && (formCtrl.hourlyrate.dirty || formCtrl.hourlyrate.touched)">Hourly Rate is required field</div>
+          <input type="number" class="form-control" placeholder="Hourly rate ($)" formControlName="rate">
+          <div *ngIf="formCtrl.rate.errors" class="invalid-feedback d-block text-left">
+            <div *ngIf="formCtrl.rate.errors.required && (formCtrl.rate.dirty || formCtrl.rate.touched)">Hourly Rate is
+              required field</div>
           </div>
         </div>
 
@@ -46,7 +55,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light w-100" (click)="modal.close('Close click')">{{buttonText}}</button>
+    <button type="button" class="btn btn-light w-100" (click)="submitForm()">{{buttonText}}</button>
   </div>
 
 </div>

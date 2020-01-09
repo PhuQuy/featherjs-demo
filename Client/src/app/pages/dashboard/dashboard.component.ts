@@ -23,15 +23,15 @@ export class DashboardComponent implements OnInit {
             name: 'Nguyen Phu Quy',
             dob: '1991/05/07',
             email: 'phuquy@gocodee.com',
-            gender: 'Male',
-            hourly: '$25'
+            gender: 1,
+            rate: 25
         },
         {
             name: 'Johnny Teo',
             dob: '1990/04/08',
             email: 'john.teo@gmail.com',
-            gender: 'Female',
-            hourly: '$30'
+            gender: 2,
+            rate: 30
         }
     ]
     constructor(private modalService: NgbModal) { }
@@ -44,6 +44,11 @@ export class DashboardComponent implements OnInit {
         const modalRef = this.modalService.open(UserEditComponent, { centered: true });
         modalRef.componentInstance.title = 'Create User';
         modalRef.componentInstance.buttonText = 'Create';
+        modalRef.result.then(user => {
+            this.users.push(user)
+            // Call create user api
+            this.openNotifyModal('Create successfully !!!!', true);
+        })
     }
 
     openEditUser(user) {
@@ -51,16 +56,26 @@ export class DashboardComponent implements OnInit {
         modalRef.componentInstance.title = 'Edit User';
         modalRef.componentInstance.buttonText = 'Edit';
         modalRef.componentInstance.user = user;
-
+        modalRef.result.then(() => {
+            // Call edit user api
+            this.openNotifyModal('Edit successfully !!!!', true);
+        })
     }
 
     deleteUser(id) {
         const modalRef = this.modalService.open(ConfirmationModalComponent, { centered: true });
         modalRef.componentInstance.message = 'Do you want to delete this user?';
         modalRef.result.then(action => {
-            if(action === 'Y') {
+            if (action === 'Y') {
                 this.users.splice(id, 1);
+                this.openNotifyModal('Delete successfully !!!!', true);
             }
         })
+    }
+
+    openNotifyModal(msg, notify) {
+        const modalRef = this.modalService.open(ConfirmationModalComponent, { centered: true });
+        modalRef.componentInstance.message = msg;
+        modalRef.componentInstance.isNotify = notify;
     }
 }

@@ -4,11 +4,14 @@
   </div>
   <div class="modal-footer">
     <div class="row mx-0 w-100">
-      <div class="col-6">
+      <div class="col-6" *ngIf="!isNotify">
         <button type="button" class="btn btn-light w-100" (click)="modal.close('Y')">Yes</button>
       </div>
-      <div class="col-6">
+      <div class="col-6" *ngIf="!isNotify">
         <button type="button" class="btn btn-light w-100" (click)="modal.close('N')">No</button>
+      </div>
+      <div class="col-12" *ngIf="isNotify">
+        <button type="button" class="btn btn-light w-100" (click)="modal.dismiss()">OK</button>
       </div>
     </div>
   </div>

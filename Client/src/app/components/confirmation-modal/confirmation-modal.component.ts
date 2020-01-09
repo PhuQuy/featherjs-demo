@@ -8,7 +8,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ConfirmationModalComponent implements OnInit {
   message = '';
-
+  isNotify = false;
+  
   constructor(private modal: NgbActiveModal) { }
 
   ngOnInit() {
