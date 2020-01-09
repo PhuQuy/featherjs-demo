@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="col-8 my-auto text-right">
-              <button class="btn btn-primary text-center font-weight-bold" (click)="openNewUser()"><i class="fa fa-plus pr-2"></i>Add new</button>
+              <button class="btn btn-primary text-center font-weight-bold" (click)="openNewJob()"><i class="fa fa-plus pr-2"></i>Add new</button>
             </div>
           </div>
         </div>
@@ -32,13 +32,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr [ngClass]="{'even': i%2 != 0}" *ngFor="let user of users; let i = index">
+                <tr [ngClass]="{'even': i%2 != 0}" *ngFor="let job of jobs; let i = index">
                   <td class="text-center">{{i + 1}}</td>
-                  <td>{{user?.title}}</td>
-                  <td>{{user?.description}}</td>
+                  <td>{{job?.title}}</td>
+                  <td>{{job?.description}}</td>
                   <td>
-                    <i class="fa fa-edit mx-1 text-green"></i>
-                    <i class="fa fa-trash mx-2 text-red"></i>
+                    <i class="fa fa-edit mx-1 text-green cursor-pointer" (click)="openEditJob(job)"></i>
+                    <i class="fa fa-trash mx-2 text-red cursor-pointer"></i>
                   </td>
                 </tr>
               </tbody>

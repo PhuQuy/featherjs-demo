@@ -45,8 +45,8 @@
                   <td>{{user?.gender}}</td>
                   <td>{{user?.hourly}}</td>
                   <td>
-                    <i class="fa fa-edit mx-1 text-green"></i>
-                    <i class="fa fa-trash mx-2 text-red"></i>
+                    <i class="fa fa-edit mx-1 text-green cursor-pointer" (click)="openEditUser(user)"></i>
+                    <i class="fa fa-trash mx-2 text-red cursor-pointer"></i>
                   </td>
                 </tr>
               </tbody>

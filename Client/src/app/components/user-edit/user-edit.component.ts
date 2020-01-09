@@ -9,6 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UserEditComponent implements OnInit {
   title = '';
+  buttonText = '';
   userForm;
 
   constructor(public fb: FormBuilder, private modal: NgbActiveModal) { }

@@ -42,5 +42,14 @@ export class DashboardComponent implements OnInit {
     openNewUser() {
         const modalRef = this.modalService.open(UserEditComponent, { centered: true });
         modalRef.componentInstance.title = 'Create User';
+        modalRef.componentInstance.buttonText = 'Create';
+    }
+
+    openEditUser(user) {
+        const modalRef = this.modalService.open(UserEditComponent, { centered: true });
+        modalRef.componentInstance.title = 'Edit User';
+        modalRef.componentInstance.buttonText = 'Edit';
+        modalRef.componentInstance.user = user;
+
     }
 }

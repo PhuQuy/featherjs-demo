@@ -10,7 +10,7 @@ import { JobEditComponent } from 'src/app/components/job-edit/job-edit.component
 
 })
 export class IconsComponent implements OnInit {
-  users = [
+  jobs = [
     {
       title: 'Full-stack developer',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
@@ -27,8 +27,18 @@ export class IconsComponent implements OnInit {
 
   }
 
-  openNewUser() {
-    const modalRef = this.modalService.open(JobEditComponent, {centered : true});
+  openNewJob() {
+    const modalRef = this.modalService.open(JobEditComponent, { centered: true });
     modalRef.componentInstance.title = 'Create Job';
+    modalRef.componentInstance.buttonText = 'Create';
   }
+
+  openEditJob(job) {
+    const modalRef = this.modalService.open(UserEditComponent, { centered: true });
+    modalRef.componentInstance.title = 'Edit User';
+    modalRef.componentInstance.buttonText = 'Edit';
+    modalRef.componentInstance.job = job;
+
+  }
+
 }
