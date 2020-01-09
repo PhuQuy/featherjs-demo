@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
         modalRef.componentInstance.title = 'Create User';
         modalRef.componentInstance.buttonText = 'Create';
         modalRef.result.then(user => {
-            this.users.push(user)
+            this.users.push(user);
             // Call create user api
             this.openNotifyModal('Create successfully !!!!', true);
         })

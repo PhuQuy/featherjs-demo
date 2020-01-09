@@ -32,14 +32,16 @@ export class IconsComponent implements OnInit {
     const modalRef = this.modalService.open(JobEditComponent, { centered: true });
     modalRef.componentInstance.title = 'Create Job';
     modalRef.componentInstance.buttonText = 'Create';
-    modalRef.result.then(() => {
+    modalRef.result.then(job => {
+      this.jobs.push(job);
+
       // Call create job api
       this.openNotifyModal('Create successfully !!!!', true);
   })
   }
 
   openEditJob(job) {
-    const modalRef = this.modalService.open(UserEditComponent, { centered: true });
+    const modalRef = this.modalService.open(JobEditComponent, { centered: true });
     modalRef.componentInstance.title = 'Edit User';
     modalRef.componentInstance.buttonText = 'Edit';
     modalRef.componentInstance.job = job;

@@ -11,15 +11,26 @@ export class JobEditComponent implements OnInit {
   title = '';
   buttonText = '';
   jobForm;
-
+  job;
   constructor(public fb: FormBuilder, private modal: NgbActiveModal) { }
 
   ngOnInit() {
+    this.createForm();
+    if (this.job) {
+      this.jobForm.patchValue(this.job);
+    }
+  }
+
+  createForm() {
     this.jobForm = this.fb.group({
-      job: new FormControl('', Validators.required),
+      title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
     });
   }
+
   get formCtrl() { return this.jobForm.controls; }
 
+  submitForm() {
+    this.modal.close(this.jobForm.value);
+  }
 }
