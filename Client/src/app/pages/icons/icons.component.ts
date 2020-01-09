@@ -38,7 +38,9 @@ export class IconsComponent implements OnInit {
     modalRef.componentInstance.title = 'Edit User';
     modalRef.componentInstance.buttonText = 'Edit';
     modalRef.componentInstance.job = job;
-
   }
 
+  deleteJob(id) {
+    this.jobs.splice(id, 1);
+  }
 }

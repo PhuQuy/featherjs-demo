@@ -52,4 +52,8 @@ export class DashboardComponent implements OnInit {
         modalRef.componentInstance.user = user;
 
     }
+
+    deleteUser(id) {
+        this.users.splice(id, 1);
+    }
 }
