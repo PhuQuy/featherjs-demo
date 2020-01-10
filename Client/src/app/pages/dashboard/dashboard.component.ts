@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditComponent } from 'src/app/components/user-edit/user-edit.component';
 import { ConfirmationModalComponent } from 'src/app/components/confirmation-modal/confirmation-modal.component';
+import { UserService } from 'src/app/services/user.service';
+import { map } from 'rxjs/operators';
+import { Paginated } from '@feathersjs/feathers';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,26 +21,13 @@ export class DashboardComponent implements OnInit {
     public clicked1: boolean = false;
     public clicked2: boolean = false;
 
-    users = [
-        {
-            name: 'Nguyen Phu Quy',
-            dob: '1991/05/07',
-            email: 'phuquy@gocodee.com',
-            gender: 1,
-            rate: 25
-        },
-        {
-            name: 'Johnny Teo',
-            dob: '1990/04/08',
-            email: 'john.teo@gmail.com',
-            gender: 2,
-            rate: 30
-        }
-    ]
-    constructor(private modalService: NgbModal) { }
+    users$;
+    constructor(private modalService: NgbModal, private userService: UserService) { }
 
     ngOnInit() {
-
+        this.users$ = this.userService.user$().pipe(
+            map((u: Paginated<any>) => u.data)
+          );
     }
 
     openNewUser() {
@@ -45,8 +35,9 @@ export class DashboardComponent implements OnInit {
         modalRef.componentInstance.title = 'Create User';
         modalRef.componentInstance.buttonText = 'Create';
         modalRef.result.then(user => {
-            this.users.push(user);
+            // this.users.push(user);
             // Call create user api
+            this.userService.create(user);
             this.openNotifyModal('Create successfully !!!!', true);
         })
     }
@@ -67,7 +58,8 @@ export class DashboardComponent implements OnInit {
         modalRef.componentInstance.message = 'Do you want to delete this user?';
         modalRef.result.then(action => {
             if (action === 'Y') {
-                this.users.splice(id, 1);
+                // this.users.splice(id, 1);
+                this.userService.remove(action, {});
                 this.openNotifyModal('Delete successfully !!!!', true);
             }
         })

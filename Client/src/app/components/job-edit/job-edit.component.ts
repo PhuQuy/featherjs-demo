@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { JobService } from 'src/app/services/job.service';
 
 @Component({
   selector: 'app-job-edit',
@@ -12,7 +13,7 @@ export class JobEditComponent implements OnInit {
   buttonText = '';
   jobForm;
   job;
-  constructor(public fb: FormBuilder, private modal: NgbActiveModal) { }
+  constructor(public fb: FormBuilder, private modal: NgbActiveModal, private jobservice: JobService) { }
 
   ngOnInit() {
     this.createForm();
@@ -31,6 +32,8 @@ export class JobEditComponent implements OnInit {
   get formCtrl() { return this.jobForm.controls; }
 
   submitForm() {
-    this.modal.close(this.jobForm.value);
+      this.jobservice.create(this.jobForm.value).then(() => {
+          this.modal.close(this.jobForm.value);
+      })
   }
 }

@@ -45,7 +45,9 @@ export class UserEditComponent implements OnInit {
 
   updateInput(e: NgbDateStruct) {
     this.date = this.transformStringDate(e);
-    console.log('date', this.date)
+    this.userForm.patchValue({
+        dob: `${this.date}`
+    });
   }
 
   transformStringDate(ngd: NgbDateStruct): string {

@@ -17,9 +17,9 @@
         </div>
         <div class="col-12 form-group">
           <!-- <input type="text" class="form-control" placeholder="Date of birth" formControlName="dob"> -->
-          <input class="form-control position-absolute hidden-input" ngbDatepicker #inputDate
+          <input class="form-control position-absolute hidden-input" ngbDatepicker #inputDate hidden
             #datePicker="ngbDatepicker" [(ngModel)]="date" (ngModelChange)="updateInput($event)" [ngModelOptions]="{standalone: true}">
-          <input class="form-control" type="text" placeholder="Date of birth" [value]="dateForFakeInput"
+          <input class="form-control" type="text" placeholder="Date of birth" formControlName="dob"
             (click)="toggleDatePicker()">
 
           <div *ngIf="formCtrl.dob.errors" class="invalid-feedback d-block text-left">

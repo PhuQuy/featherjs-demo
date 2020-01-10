@@ -1,37 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import * as feathersRx from 'feathers-reactive';
+import * as io from 'socket.io-client';
+
+import feathers from '@feathersjs/feathers';
+import feathersSocketIOClient from '@feathersjs/socketio-client';
 import { environment } from 'src/environments/environment';
-import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class BaseService {
+    private _feathers = feathers();                     // init socket.io
+    private _socket = io(environment.api);      // init feathers
+    // private feathersAuthClient = require('@feathersjs/authentication-client').default;
 
-  constructor(protected http: HttpClient) { }
-  callApi(url, body, option?) {
-    let request = { ...body };
-    return this.http.post(`${environment.api}/${url}`, request, option).pipe(
-      map(response => response),
-      catchError(this.handleError)
-    );
-  }
-  get(url) {
-    return this.http.get(`${environment.api}/${url}`).pipe(
-      map(response => response),
-      catchError(this.handleError)
-    );
-  }
-  put(url, user) {
-    return this.http.put(`${environment.api}/${url}`, user).pipe(
-      map(response => response),
-      catchError(this.handleError)
-    );
-  }
+    constructor() {
+        this._feathers
+            .configure(feathersSocketIOClient(this._socket))  // add socket.io plugin
+            .configure(feathersRx({                           // add feathers-reactive plugin
+                idField: '_id'
+            }));
+    }
 
-  protected handleError(error: any) {
-    console.log(error);
-    return throwError(error);
-  }
+    // expose services
+    public service(name: string) {
+        return this._feathers.service(name);
+    }
 }

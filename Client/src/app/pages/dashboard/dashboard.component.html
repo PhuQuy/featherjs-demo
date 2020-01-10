@@ -37,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr [ngClass]="{'even': i%2 != 0}" *ngFor="let user of users; let i = index">
+                <tr [ngClass]="{'even': i%2 != 0}" *ngFor="let user of users$ | async; let i = index">
                   <td class="text-center">{{i + 1}}</td>
                   <td>{{user?.name}}</td>
                   <td>{{user?.dob}}</td>

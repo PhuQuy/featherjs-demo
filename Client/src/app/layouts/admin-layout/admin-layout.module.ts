@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapComponent } from '../../pages/map/map.component';
-import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UserComponent } from '../../pages/user/user.component';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
@@ -31,7 +30,6 @@ import { ConfirmationModalModule } from 'src/app/components/confirmation-modal/c
     DashboardComponent,
     UserComponent,
     IconsComponent,
-    NotificationsComponent,
     MapComponent,
   ]
 })

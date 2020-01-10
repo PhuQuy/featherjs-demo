@@ -6,10 +6,14 @@ import { Application } from '../declarations';
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
   const job = sequelizeClient.define('job', {
-    text: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
   }, {
     hooks: {
       beforeCount(options: any) {
