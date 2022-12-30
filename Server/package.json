@@ -55,7 +55,7 @@
     "@types/serve-favicon": "^2.5.0",
     "@types/validator": "^10.11.3",
     "axios": "^0.19.1",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.2",
     "shx": "^0.3.2",
     "ts-mocha": "^6.0.0",
